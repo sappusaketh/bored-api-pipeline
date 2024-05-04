@@ -53,3 +53,19 @@ The following tools are used for development(you dont need these if you just wan
 ### Configuration
 - Edit jobSchedule in [values.yaml](helm/values.yaml) to change schedule and run `make deploy`
 - Any value edited in [dev.yaml](config/dev.yaml) will take effect only if you rebuild image `make docker-build`
+  | Config | Description |
+  |-|-|  
+  | endpoint | API endpoint to fetch activities |
+  | maxPollTime | Total time to keep fetching new activities |
+  | outputDir | Directory to write output files |
+  | rotate.interval | Interval to rotate output files |
+  | rotate.size | Max size of each output file |
+- If you want to create new config file copy current one and make changes to it and then run `make docker-build` and then update env in [values.yaml](helm/values.yaml) and run `make deploy`
+  | Config | Description |
+  |-|-|
+  | namespace | Kubernetes namespace for resources |  
+  | appName | Name given to k8s resources like cronjob, applabels etc |
+  | pvcName | Persistent volume claim name |
+  | jobSchedule | Cron schedule for pipeline job |
+  | env | Config file name without extension |
+  | pvEnabled | Whether to use persistent volume or local mount |
