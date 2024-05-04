@@ -1,0 +1,37 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ .Values.appName }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Values.appName }}
+spec:
+  schedule: "{{ .Values.jobSchedule }}"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: main
+            image: bored-api-pipeline:latest
+            imagePullPolicy: IfNotPresent
+            env:
+            - name: ENV
+              value: "{{ .Values.env }}"
+            - name: RUN_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            volumeMounts:
+            - name: pipeline-data
+              mountPath: /tmp
+          restartPolicy: OnFailure
+          volumes:
+          - name: pipeline-data
+          {{- if .Values.pvEnabled }}
+            persistentVolumeClaim:
+              claimName: {{ .Values.pvcName }}
+          {{- else }}
+            hostPath:
+              path: /tmp
+          {{- end }}

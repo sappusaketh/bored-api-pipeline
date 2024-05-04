@@ -1,0 +1,13 @@
+namespace: bored-api
+
+appName: activity-pipeline
+
+pvcName: "activity-pipeline-data"
+
+# schedule for activity pipeline run
+jobSchedule: "*/1 * * * *"
+
+# deployment env this will tell which config file to use
+env: dev
+
+pvEnabled: true

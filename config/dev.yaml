@@ -1,0 +1,6 @@
+endpoint: "http://www.boredapi.com/api/activity/"
+maxPollTime: 1m #amount of time to poll for new activity suggestions
+outputDir: /tmp/boredapi-pipeline-runs #directory to write output files
+rotate:
+  interval: 30s #rotate files every 30 seconds
+  size: 1048576 #1MB
