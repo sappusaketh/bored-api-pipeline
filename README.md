@@ -60,7 +60,7 @@ The following tools are used for development(you dont need these if you just wan
   | outputDir | Directory to write output files |
   | rotate.interval | Interval to rotate output files |
   | rotate.size | Max size of each output file |
-- If you want to create new config file copy current one and make changes to it and then run `make docker-build` and then update env in [values.yaml](helm/values.yaml) and run `make deploy`
+- If you want to create new config file in [config](config) copy current one and make changes to it and then run `make docker-build` and then update env in [values.yaml](helm/values.yaml) and run `make deploy`
   | Config | Description |
   |-|-|
   | namespace | Kubernetes namespace for resources |  
