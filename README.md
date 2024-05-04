@@ -51,5 +51,5 @@ The following tools are used for development(you dont need these if you just wan
 
 
 ### Configuration
-- Edit jobSchedule in values.yaml to change schedule and run `make deploy`
+- Edit jobSchedule in [values.yaml](helm/values.yaml) to change schedule and run `make deploy`
 - Any value edited in [dev.yaml](config/dev.yaml) will take effect only if you rebuild image `make docker-build`
