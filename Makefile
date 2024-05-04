@@ -12,5 +12,9 @@ build:
 deploy: 
 	cd helm && helm template bored-api-pipeline . --values values.yaml | kubectl apply -n bored-api -f -
 
+.PHONY: delete
+deploy: 
+	cd helm && helm template bored-api-pipeline . --values values.yaml | kubectl delete -n bored-api -f -
+
 .PHONY: all
 all: docker-build deploy

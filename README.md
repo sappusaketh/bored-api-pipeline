@@ -40,12 +40,14 @@ The following tools are used for development(you dont need these if you just wan
   - CronJob - This will run the data pipeline on schedule(default 1 min) to fetch activities and store them in files
   - PersistentVolume - To persist data we copied in our datapipeline job
   - PersistentVolumeClaim - Claim volume for our job
-- By default persistence volume is enabled which means all files are stored on node running in kubernetes cluster. you can check the outputs by running `minikube ssh` and checking files under `/data/boredapi-pipeline-runs` folder.
+- By default persistence volume is enabled which means all files are stored on node running in kubernetes cluster. 
+- You can check the outputs by running `minikube ssh -n minikube`(if your node name is not minikube please replace it) and checking files under `/data/boredapi-pipeline-runs` folder.
 - If you want to mount your local volume you can set `pvEnabled` to false in [values.yaml](helm/values.yaml)
 - run `minikube mount /tmp/minikube:/tmp` to mount your local dir
 - run make deploy to disable persistence volume and use local mount
 - once job run is done you can find all outputs on your mounted volume eg `ls /tmp/minikube` in this case. 
 - Its better to create new dir and use it for mounting because minkiube [can't do 9P Mounts with large folders](https://minikube.sigs.k8s.io/docs/handbook/mount/#9p-mounts) 
+- Once testing is done makesure to delete infra either by running `make delete` or `minikube delete` to clean up resources
 
 
 ### Configuration
